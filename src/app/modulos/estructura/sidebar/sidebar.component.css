@@ -1,0 +1,41 @@
+/* menu sidebar init */
+#_sidebar{
+    left: -20%;
+    transition: all 600ms linear;
+}
+#_sidebar.active{
+    left: 0;
+}
+/* menu sidebar end */
+/* contenido del main init */
+#_content-main{
+    transition: all 600ms linear;
+    left: 0;
+}
+
+#_content-main.active{
+    left: -20%;
+    width: 100% !important;  
+}
+/* contenido del main end */
+
+/* contenido del menu sidebar init */
+._tab-content {
+    max-height: 0;
+    -webkit-transition: max-height 600ms;
+    -o-transition: max-height 600ms;
+    transition: max-height 600ms;
+}
+._tab-content.active{
+    max-height: 100vh;
+}
+/* contenido del menu sidebar end */
+
+/* icono del contenido del menu sidebar init */
+._icon-label-menu{
+    transition: transform 600ms ease-in-out;
+}
+._icon-label-menu.active{
+    transform:rotate(90deg);
+}
+/* icono del contenido del menu sidebar end */

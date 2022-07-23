@@ -1,0 +1,71 @@
+
+<div class="w-full">
+    <div class="grid grid-cols-2 gap-4">
+        <mat-form-field appearance="legacy">
+            <mat-label>Turno</mat-label>
+            <mat-select [ngModelOptions]="{standalone: true}" [(ngModel)]="turno"  
+                (selectionChange)="actualizarTurnos($event.value)">
+              <mat-option value="1">Mañana</mat-option>
+              <mat-option value="2">Tarde</mat-option>
+              <mat-option value="3">Noche</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="legacy">
+            <mat-label>Fecha de cita</mat-label>
+            <input [ngModelOptions]="{standalone: true}" 
+                   [(ngModel)]="fechaCita" matInput [matDatepicker]="picker" (dateChange)="buscarCitas()" readonly>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+    </div>
+</div>
+<div class="_load_main inset-0" *ngIf="cargando">
+    <div class="_load_content">
+        <mat-spinner diameter=70 color=primary></mat-spinner>
+        <h3 class="_load_text">{{mensajeCarga}}</h3>
+    </div>
+</div>
+<div class="grid grid-rows-1">
+    
+    <div id="container_cita" style="margin-top: 20px; width: 100%; overflow-y: scroll; overflow-wrap: normal;">
+       
+        <div *ngFor="let item of items" class="w-1/5"
+             style="height: 180px; 
+                    background-color: rgb(217, 221, 219);
+                    border-top: 1px solid rgb(148, 148, 148);
+                    border-bottom: 1px solid rgb(148, 148, 148);
+                    border-left: 1px solid rgb(148, 148, 148);
+                    float: left;">
+            <p style="text-align: center; 
+                    padding: 3px;
+                    border-bottom: 1px solid rgb(148, 148, 148);">
+                {{item.he}} - {{item.hs}}</p>
+            <div class="grid justify-items-center" style="font-size: 14px; padding-top: 5px;">
+                
+                <p style="text-align: center;" *ngIf="item.tieneCita">
+                    <b>Paciente</b>
+                </p>
+
+                <p style="text-align: center;
+                    text-overflow: ellipsis;                        
+                    overflow: hidden; 
+                    margin-bottom: 0;" *ngIf="item.tieneCita">
+                    {{item.cita.paciente.nombres}} {{item.cita.paciente.apellidoPaterno}} {{item.cita.paciente.apellidoMaterno}}
+                </p>
+
+                <p style="text-align: center; " *ngIf="item.tieneCita">
+                    <b>Número de documento</b>
+                </p>
+
+                <p style="text-align: center;" *ngIf="item.tieneCita">
+                    {{item.cita.paciente.numeroDocumento}}
+                </p>
+                <button class="bg-green-500 mx-auto w-11/12 p-1" *ngIf="item.tieneCita"
+                    type="button" (click)="atender(item.cita)">ATENDIDO</button>
+            </div>
+           
+        </div>
+       
+    </div>
+</div>
+

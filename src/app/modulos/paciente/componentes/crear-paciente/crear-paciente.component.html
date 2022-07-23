@@ -1,0 +1,210 @@
+<div class="_load_main inset-0" *ngIf="cargando">
+    <div class="_load_content">
+        <mat-spinner diameter=70 color=primary></mat-spinner>
+        <h3 class="_load_text">{{mensajeCarga}}</h3>
+    </div>
+</div>
+<mat-card>
+    <mat-card-title class="text-2xl font-bold text-primary">{{ bloquear ? 'Editar' : 'Crear' }} Paciente</mat-card-title>
+    <mat-card-subtitle class="text-lg text-gray-400 font-bold">Formulario</mat-card-subtitle>
+    <mat-dialog-content class="mat-typography">
+
+        <!-- aqui va el formulario -->
+        <form [formGroup]="form" novalidate>
+
+            <div class="grid grid-rows-11 grid-cols-2 gap-4">
+
+                <mat-form-field appearance="legacy">
+                    <mat-label>Nombres<span class="text-red-600">(*)</span></mat-label>
+                    <input [maxLength]="50" matInput type="text" formControlName="nombres" [readonly]="bloquear" [style]="{'color':(bloquear ? 'rgba(0,0,0,.38)': 'black')}">
+                    <mat-error *ngIf="form.controls.nombres.hasError('required')">El campo es requerido</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="legacy">
+                    <mat-label>Ape. Paterno<span class="text-red-600">(*)</span></mat-label>
+                    <input [maxLength]="50" matInput type="text" formControlName="paterno" [readonly]="bloquear" [style]="{'color':(bloquear ? 'rgba(0,0,0,.38)': 'black')}">
+                    <mat-error *ngIf="form.controls.paterno.hasError('required')">El campo es requerido</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="legacy">
+                    <mat-label>Ape. Materno<span class="text-red-600">(*)</span></mat-label>
+                    <input [maxLength]="50" matInput type="text" formControlName="materno" [readonly]="bloquear" [style]="{'color':(bloquear ? 'rgba(0,0,0,.38)': 'black')}">
+                    <mat-error *ngIf="form.controls.materno.hasError('required')">El campo es requerido</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="legacy">
+                    <mat-label>Tipo de documento<span class="text-red-600">(*)</span></mat-label>
+                    <mat-select formControlName="tipoDocumento" [disabled]="bloquear" [style]="{'color':(bloquear ? 'rgba(0,0,0,.38)': 'black')}">
+                      <mat-option value="">Seleccione</mat-option>
+                      <mat-option value="DNI">DNI</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="form.controls.tipoDocumento.hasError('required')">Seleccione una opción</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="legacy">
+                    <mat-label>Número de documento<span class="text-red-600">(*)</span></mat-label>
+                    <input [maxLength]="20" matInput type="text" formControlName="numeroDocumento"[readonly]="bloquear" [style]="{'color':(bloquear ? 'rgba(0,0,0,.38)': 'black')}">
+                    <mat-error *ngIf="form.controls.numeroDocumento.hasError('required')">El campo es requerido</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="legacy">
+                    <mat-label>Genero<span class="text-red-600">(*)</span></mat-label>
+                    <mat-select formControlName="genero" [disabled]="bloquear" [style]="{'color':(bloquear ? 'rgba(0,0,0,.38)': 'black')}">
+                      <mat-option value="">Seleccione</mat-option>
+                      <mat-option value="Femenino">Femenino</mat-option>
+                      <mat-option value="Masculino">Masculino</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="form.controls.genero.hasError('required')">Seleccione una opción</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="legacy">
+                    <mat-label>Estado civil</mat-label>
+                    <mat-select formControlName="estadoCivil">
+                      <mat-option value="">Seleccione</mat-option>
+                      <mat-option value="Soltero">Soltero</mat-option>
+                      <mat-option value="Casado">Casado</mat-option>
+                      <mat-option value="Viudo">Viudo</mat-option>
+                      <mat-option value="Divorciado">Divorciado</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field appearance="legacy">
+                    <mat-label>Grupo sanguineo</mat-label>
+                    <mat-select formControlName="grupoSanguineo">
+                        <mat-option value="">Seleccione</mat-option>
+                        <mat-option value="A+">A+</mat-option>
+                        <mat-option value="A">A-</mat-option>
+                        <mat-option value="B+">B+</mat-option>
+                        <mat-option value="B">B-</mat-option>
+                        <mat-option value="AB+">AB+</mat-option>
+                        <mat-option value="AB-">AB-</mat-option>
+                        <mat-option value="O+">O+</mat-option>
+                        <mat-option value="O">O-</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field appearance="legacy">
+                    <mat-label>Canal</mat-label>
+                    <mat-select formControlName="canal">
+                      <mat-option value="">Seleccione</mat-option>
+                      <mat-option value="Presencial">Presencial</mat-option>
+                      <mat-option value="Facebook">Facebook</mat-option>
+                      <mat-option value="Twiter">Twiter</mat-option>
+                      <mat-option value="Tiktok">Tiktok</mat-option>
+                      <mat-option value="Whatsapp">Whatsapp</mat-option>
+                      <mat-option value="Amigos">Amigos</mat-option>                      
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field appearance="legacy">
+                    <mat-label>Religión</mat-label>
+                    <mat-select formControlName="religion">
+                        <mat-option value="">Seleccione</mat-option>
+                        <mat-option value="CATÓLICO">CATÓLICO</mat-option>
+                        <mat-option value="CRISTIANO">CRISTIANO</mat-option>
+                        <mat-option value="TESTIGO DE JEHOVÁ">TESTIGO DE JEHOVÁ</mat-option>
+                        <mat-option value="EVANGÉLICO">EVANGÉLICO</mat-option>                   
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field appearance="legacy">
+                    <mat-label>Fecha de nacimiento<span class="text-red-600">(*)</span></mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="fechaNacimiento" readonly>
+                    <mat-datepicker-toggle matSuffix [for]="picker" [disabled]="bloquear"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                    <mat-error *ngIf="form.controls.fechaNacimiento.hasError('required')">El campo es requerido</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="legacy">
+                    <mat-label>Lugar de nacimiento</mat-label>
+                    <input [maxLength]="50" matInput type="text" formControlName="lugarNacimiento">
+                </mat-form-field>
+
+                <mat-form-field appearance="legacy">
+                    <mat-label>Tipo paciente</mat-label>
+                    <mat-select formControlName="tipoPaciente">
+                        <mat-option value="">Seleccione</mat-option>
+                        <mat-option value="PARTICULAR">PARTICULAR</mat-option>
+                        <mat-option value="FOPASEF">FOPASEF</mat-option>
+                        <mat-option value="SALUDPOL">SALUDPOL</mat-option>                   
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field appearance="legacy">
+                    <mat-label>Departamento <span class="text-red-600">(*)</span></mat-label>
+                    <mat-select (selectionChange)="buscarProvincias($event.value)" formControlName="departamento">
+                      <mat-option value="">Seleccione</mat-option>
+                      <mat-option *ngFor="let d of departamentos" [value]="d.departamentoId">{{d.nombre}}</mat-option>                      
+                    </mat-select>
+                    <mat-error *ngIf="form.controls.departamento.hasError('required')">Seleccione una opción</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="legacy">
+                    <mat-label>Provincia <span class="text-red-600">(*)</span></mat-label>
+                    <mat-select (selectionChange)="buscarDistritos($event.value)" formControlName="provincia">
+                      <mat-option value="">Seleccione</mat-option>
+                      <mat-option *ngFor="let p of provincias" [value]="p.provinciaId">{{p.nombre}}</mat-option>                      
+                    </mat-select>
+                    <mat-error *ngIf="form.controls.provincia.hasError('required')">Seleccione una opción</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="legacy">
+                    <mat-label>Distrito <span class="text-red-600">(*)</span></mat-label>
+                    <mat-select formControlName="distrito">
+                      <mat-option value="">Seleccione</mat-option>
+                      <mat-option *ngFor="let d of distritos" [value]="d.distritoId">{{d.nombre}}</mat-option>                      
+                    </mat-select>
+                    <mat-error *ngIf="form.controls.distrito.hasError('required')">Seleccione una opción</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="legacy">
+                    <mat-label>Telefono fijo</mat-label>
+                    <input [maxLength]="20" matInput type="text" formControlName="telefonoFijo">
+                </mat-form-field>
+
+                <mat-form-field appearance="legacy">
+                    <mat-label>Celular</mat-label>
+                    <input [maxLength]="20" matInput type="text" formControlName="celular">
+                </mat-form-field>
+                
+                <mat-form-field appearance="legacy">
+                    <mat-label>Correo</mat-label>
+                    <input [maxLength]="100"  matInput type="text" formControlName="correo">
+                </mat-form-field>
+
+                <mat-form-field appearance="legacy">
+                    <mat-label>Dirección</mat-label>
+                    <input [maxLength]="200" matInput type="text" formControlName="direccion">
+                </mat-form-field>
+
+                <mat-form-field appearance="legacy">
+                    <mat-label>Nombres y apellidos del responsable</mat-label>
+                    <input [maxLength]="200" matInput type="text" formControlName="responsableNombresApellidos">
+                </mat-form-field>
+
+                <mat-form-field appearance="legacy">
+                    <mat-label>Parentesco del paciente</mat-label>
+                    <input [maxLength]="50" matInput type="text" formControlName="responsableParentesco">
+                </mat-form-field>
+
+                <mat-form-field appearance="legacy">
+                    <mat-label>Telefono del responsable</mat-label>
+                    <input [maxLength]="10" matInput type="text" formControlName="responsableTelefono">
+                </mat-form-field>
+            </div>
+        </form>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <div class="w-100">
+
+            <button *ngIf="quitarBotonCancel" [mat-dialog-close]="{guardo:false}" mat-raised-button color="warn" class="mr-2">
+                <mat-icon>close</mat-icon> Cancelar</button>
+
+            <button *ngIf="!quitarBotonCancel" routerLink="/paciente/listar" mat-raised-button color="warn" class="mr-2">
+                <mat-icon>close</mat-icon> Cancelar</button>
+            <button (click)="registrar()" cdkFocusInitial [disabled]="!form.valid"  
+                mat-raised-button color="accent">
+                <mat-icon>save</mat-icon> Guardar</button>
+        </div>
+    </mat-dialog-actions>
+</mat-card>

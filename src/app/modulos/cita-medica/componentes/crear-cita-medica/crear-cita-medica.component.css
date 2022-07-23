@@ -1,0 +1,33 @@
+.header-item-cita{
+    width: 100px; 
+    height: 30px; 
+    background-color: burlywood;
+    border-top: 1px;
+    border-left: 1px;
+    border-right: 1px;
+    border-style: solid;
+    border-color: black;
+    float: left;
+}
+
+
+.item-cita{
+    width: 100px; 
+    height: 150px;                         
+    background-color: rgb(231, 228, 228);                        
+    float: left;                        
+    border: 1px solid black; 
+}
+.item-cita-text{
+    text-overflow: ellipsis;                        
+    overflow: hidden; 
+    margin-bottom: 0;
+}
+
+.item-cita-text-medico{
+    margin-bottom: 0;
+}
+
+.nuevo{
+    background-color: green;
+}

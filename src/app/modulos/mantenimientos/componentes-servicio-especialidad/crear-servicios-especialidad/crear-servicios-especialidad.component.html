@@ -1,0 +1,41 @@
+<div class="_load_main inset-0" *ngIf="cargando">
+    <div class="_load_content">
+        <mat-spinner diameter=70 color=primary></mat-spinner>
+        <h3 class="_load_text">{{mensajeCarga}}</h3>
+    </div>
+</div>
+<mat-card>
+    <mat-card-title>Formulario area médica</mat-card-title>
+    <mat-card-subtitle>{{ servicio.servicioId ? 'Editar Especialidad' : 'Crear Especialidad'}}</mat-card-subtitle>
+    <mat-dialog-content class="mat-typography">
+        <!-- aqui va el formulario -->
+        <form [formGroup]="form" novalidate>
+
+            <div class="grid grid-rows-2 grid-cols-1 gap-4">
+                <mat-form-field appearance="legacy">
+                    <mat-label>Nombre<span class="text-red-600">(*)</span></mat-label>
+                    <input [maxLength]="80" matInput type="text" formControlName="nombre">
+                    <mat-error *ngIf="form.controls.nombre.hasError('required')">El campo es requerido</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="legacy">
+                    <mat-label>Area médica <span class="text-red-600">(*)</span></mat-label>
+                    <mat-select formControlName="areaMedica">
+                      <mat-option value="">Seleccione</mat-option>
+                      <mat-option *ngFor="let am of areasMedicas" [value]="am.areaMedicaId">{{am.nombre}}</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="form.controls.areaMedica.hasError('required')">Seleccione una opción</mat-error>
+                </mat-form-field>
+            </div>
+        </form>
+    </mat-dialog-content>
+    <mat-card-actions align="end">
+        <button [mat-dialog-close]="{guardo:false}" 
+                mat-raised-button color="warn" class="mr-2">
+            <mat-icon>close</mat-icon> Cancelar</button>
+        
+        <button cdkFocusInitial [disabled]="!form.valid"
+            mat-raised-button color="accent" (click)="registrar()">
+            <mat-icon>save</mat-icon> Guardar</button>
+    </mat-card-actions>
+</mat-card>

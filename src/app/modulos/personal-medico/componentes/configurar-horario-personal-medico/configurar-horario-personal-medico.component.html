@@ -1,0 +1,353 @@
+
+<div class="_load_main inset-0" *ngIf="cargando">
+    <div class="_load_content">
+        <mat-spinner diameter=70 color=primary></mat-spinner>
+        <h3 class="_load_text">{{ mensajeCarga }}</h3>
+    </div>
+</div>
+<!-- aqui va el formulario -->
+<form [formGroup]="form" novalidate>
+<mat-card>
+    <mat-card-title class="text-2xl text-primary"><b>Configurar horario del personal médico</b></mat-card-title>
+    <mat-card-subtitle class="text-lg - text-gray-400 text-uppercase"><b>{{personalMedico.nombres +' '+ personalMedico.apellidoPaterno +' '+ personalMedico.apellidoMaterno}}</b></mat-card-subtitle>
+    <mat-dialog-content class="mat-typography">
+
+        <div class="grid grid-rows-8 grid-cols-1">
+
+            <div class="grid grid-cols-7 grid-rows-20 gap-2">
+
+                <!-- col 1 -->
+                <div></div>
+                <label for="" class="col-span-2 rounded-pill text-center bg-light bg-gradient border border-dark fs-5 p-2"><b>TURNO MAÑANA</b></label>
+                <label for="" class="col-span-2 rounded-pill text-center bg-light bg-gradient border border-dark fs-5 p-2"><b>TURNO TARDE</b></label>
+                <label for="" class="col-span-2 rounded-pill text-center bg-light bg-gradient border border-dark fs-5 p-2"><b>TURNO NOCHE</b></label>
+                <!-- fin col 1 -->
+
+                <!-- col 2 -->
+                <div></div>
+                <label for="" class="text-center text-lg">Hora de entrada</label>
+                <label for="" class="text-center text-lg">Hora de salida</label>
+                <label for="" class="text-center text-lg">Hora de entrada</label>
+                <label for="" class="text-center text-lg">Hora de salida</label>
+                <label for="" class="text-center text-lg">Hora de entrada</label>
+                <label for="" class="text-center text-lg">Hora de salida</label>
+                <!-- fin col 2 -->
+
+                <!-- item 1 -->
+                <label for="" class="text-gray-400 fs-5 pt-2"><b>Lunes</b></label>
+                <!-- turno dia -->
+                <mat-form-field appearance="legacy">
+                    <mat-label>Seleccione</mat-label>
+                    <mat-select formControlName="tm_lunes_he">
+                        <mat-option *ngFor="let item of horariosEntradaManana" [value]="item">{{item}}</mat-option>                          
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="legacy">
+                    <mat-label>Seleccione</mat-label>
+                    <mat-select formControlName="tm_lunes_hs">
+                        <mat-option *ngFor="let item of horariosSalidaManana" [value]="item">{{item}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <!-- turno tarde -->
+                <mat-form-field appearance="legacy">
+                    <mat-label>Seleccione</mat-label>
+                    <mat-select formControlName="tt_lunes_he">
+                        <mat-option *ngFor="let item of horariosEntradaTarde" [value]="item">{{item}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="legacy">
+                    <mat-label>Seleccione</mat-label>
+                    <mat-select formControlName="tt_lunes_hs">
+                        <mat-option *ngFor="let item of horariosSalidaTarde" [value]="item">{{item}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <!-- turno noche -->
+                <mat-form-field appearance="legacy">
+                    <mat-label>Seleccione</mat-label>
+                    <mat-select formControlName="tn_lunes_he">
+                        <mat-option *ngFor="let item of horariosEntradaNoche" [value]="item">{{item}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="legacy">
+                    <mat-label>Seleccione</mat-label>
+                    <mat-select formControlName="tn_lunes_hs">
+                        <mat-option *ngFor="let item of horariosSalidaNoche" [value]="item">{{item}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <!-- fin item 1 -->
+
+                <!-- item 2 -->
+                <label for="" class="text-gray-400 fs-5 pt-2"><b>Martes</b></label>
+                <!-- turno dia -->
+                <mat-form-field appearance="legacy">
+                    <mat-label>Seleccione</mat-label>
+                    <mat-select formControlName="tm_martes_he">
+                        <mat-option *ngFor="let item of horariosEntradaManana" [value]="item">{{item}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="legacy">
+                    <mat-label>Seleccione</mat-label>
+                    <mat-select formControlName="tm_martes_hs">
+                        <mat-option *ngFor="let item of horariosSalidaManana" [value]="item">{{item}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <!-- turno tarde -->
+                <mat-form-field appearance="legacy">
+                    <mat-label>Seleccione</mat-label>
+                    <mat-select formControlName="tt_martes_he">
+                        <mat-option *ngFor="let item of horariosEntradaTarde" [value]="item">{{item}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="legacy">
+                    <mat-label>Seleccione</mat-label>
+                    <mat-select formControlName="tt_martes_hs">
+                        <mat-option *ngFor="let item of horariosSalidaTarde" [value]="item">{{item}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <!-- turno noche -->
+                <mat-form-field appearance="legacy">
+                    <mat-label>Seleccione</mat-label>
+                    <mat-select formControlName="tn_martes_he">
+                        <mat-option *ngFor="let item of horariosEntradaNoche" [value]="item">{{item}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="legacy">
+                    <mat-label>Seleccione</mat-label>
+                    <mat-select formControlName="tn_martes_hs">
+                        <mat-option *ngFor="let item of horariosSalidaNoche" [value]="item">{{item}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <!-- fin item 1 -->
+
+                <!-- item 3 -->
+                <label for="" class="text-gray-400 fs-5 pt-2"><b>Miércoles</b></label>
+                <!-- turno dia -->
+                <mat-form-field appearance="legacy">
+                    <mat-label>Seleccione</mat-label>
+                    <mat-select formControlName="tm_miercoles_he">
+                        <mat-option *ngFor="let item of horariosEntradaManana" [value]="item">{{item}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="legacy">
+                    <mat-label>Seleccione</mat-label>
+                    <mat-select formControlName="tm_miercoles_hs">
+                        <mat-option *ngFor="let item of horariosSalidaManana" [value]="item">{{item}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <!-- turno tarde -->
+                <mat-form-field appearance="legacy">
+                    <mat-label>Seleccione</mat-label>
+                    <mat-select formControlName="tt_miercoles_he">
+                        <mat-option *ngFor="let item of horariosEntradaTarde" [value]="item">{{item}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="legacy">
+                    <mat-label>Seleccione</mat-label>
+                    <mat-select formControlName="tt_miercoles_hs">
+                        <mat-option *ngFor="let item of horariosSalidaTarde" [value]="item">{{item}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <!-- turno noche -->
+                <mat-form-field appearance="legacy">
+                    <mat-label>Seleccione</mat-label>
+                    <mat-select formControlName="tn_miercoles_he">
+                        <mat-option *ngFor="let item of horariosEntradaNoche" [value]="item">{{item}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="legacy">
+                    <mat-label>Seleccione</mat-label>
+                    <mat-select formControlName="tn_miercoles_hs">
+                        <mat-option *ngFor="let item of horariosSalidaNoche" [value]="item">{{item}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <!-- fin item 1 -->
+
+                <!-- item 4 -->
+                <label for="" class="text-gray-400 fs-5 pt-2"><b>Jueves</b></label>
+                <!-- turno dia -->
+                <mat-form-field appearance="legacy">
+                    <mat-label>Seleccione</mat-label>
+                    <mat-select formControlName="tm_jueves_he">
+                        <mat-option *ngFor="let item of horariosEntradaManana" [value]="item">{{item}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="legacy">
+                    <mat-label>Seleccione</mat-label>
+                    <mat-select formControlName="tm_jueves_hs">
+                        <mat-option *ngFor="let item of horariosSalidaManana" [value]="item">{{item}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <!-- turno tarde -->
+                <mat-form-field appearance="legacy">
+                    <mat-label>Seleccione</mat-label>
+                    <mat-select formControlName="tt_jueves_he">
+                        <mat-option *ngFor="let item of horariosEntradaTarde" [value]="item">{{item}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="legacy">
+                    <mat-label>Seleccione</mat-label>
+                    <mat-select formControlName="tt_jueves_hs">
+                        <mat-option *ngFor="let item of horariosSalidaTarde" [value]="item">{{item}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <!-- turno noche -->
+                <mat-form-field appearance="legacy">
+                    <mat-label>Seleccione</mat-label>
+                    <mat-select formControlName="tn_jueves_he">
+                        <mat-option *ngFor="let item of horariosEntradaNoche" [value]="item">{{item}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="legacy">
+                    <mat-label>Seleccione</mat-label>
+                    <mat-select formControlName="tn_jueves_hs">
+                        <mat-option *ngFor="let item of horariosSalidaNoche" [value]="item">{{item}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <!-- fin item 1 -->
+
+                <!-- item 5 -->
+                <label for="" class="text-gray-400 fs-5 pt-2"><b>Viernes</b></label>
+                <!-- turno dia -->
+                <mat-form-field appearance="legacy">
+                    <mat-label>Seleccione</mat-label>
+                    <mat-select formControlName="tm_viernes_he">
+                        <mat-option *ngFor="let item of horariosEntradaManana" [value]="item">{{item}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="legacy">
+                    <mat-label>Seleccione</mat-label>
+                    <mat-select formControlName="tm_viernes_hs">
+                        <mat-option *ngFor="let item of horariosSalidaManana" [value]="item">{{item}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <!-- turno tarde -->
+                <mat-form-field appearance="legacy">
+                    <mat-label>Seleccione</mat-label>
+                    <mat-select formControlName="tt_viernes_he">
+                        <mat-option *ngFor="let item of horariosEntradaTarde" [value]="item">{{item}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="legacy">
+                    <mat-label>Seleccione</mat-label>
+                    <mat-select formControlName="tt_viernes_hs">
+                        <mat-option *ngFor="let item of horariosSalidaTarde" [value]="item">{{item}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <!-- turno noche -->
+                <mat-form-field appearance="legacy">
+                    <mat-label>Seleccione</mat-label>
+                    <mat-select formControlName="tn_viernes_he">
+                        <mat-option *ngFor="let item of horariosEntradaNoche" [value]="item">{{item}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="legacy">
+                    <mat-label>Seleccione</mat-label>
+                    <mat-select formControlName="tn_viernes_hs">
+                        <mat-option *ngFor="let item of horariosSalidaNoche" [value]="item">{{item}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <!-- fin item 1 -->
+
+                <!-- item 6 -->
+                <label for="" class="text-gray-400 fs-5 pt-2"><b>Sábado</b></label>
+                <!-- turno dia -->
+                <mat-form-field appearance="legacy">
+                    <mat-label>Seleccione</mat-label>
+                    <mat-select formControlName="tm_sabado_he">
+                        <mat-option *ngFor="let item of horariosEntradaManana" [value]="item">{{item}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="legacy">
+                    <mat-label>Seleccione</mat-label>
+                    <mat-select formControlName="tm_sabado_hs">
+                        <mat-option *ngFor="let item of horariosSalidaManana" [value]="item">{{item}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <!-- turno tarde -->
+                <mat-form-field appearance="legacy">
+                    <mat-label>Seleccione</mat-label>
+                    <mat-select formControlName="tt_sabado_he">
+                        <mat-option *ngFor="let item of horariosEntradaTarde" [value]="item">{{item}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="legacy">
+                    <mat-label>Seleccione</mat-label>
+                    <mat-select formControlName="tt_sabado_hs">
+                        <mat-option *ngFor="let item of horariosSalidaTarde" [value]="item">{{item}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <!-- turno noche -->
+                <mat-form-field appearance="legacy">
+                    <mat-label>Seleccione</mat-label>
+                    <mat-select formControlName="tn_sabado_he">
+                        <mat-option *ngFor="let item of horariosEntradaNoche" [value]="item">{{item}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="legacy">
+                    <mat-label>Seleccione</mat-label>
+                    <mat-select formControlName="tn_sabado_hs">
+                        <mat-option *ngFor="let item of horariosSalidaNoche" [value]="item">{{item}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <!-- fin item 1 -->
+
+                <!-- item 7 -->
+                <label for="" class="text-gray-400 fs-5 pt-2"><b>Domingo</b></label>
+                <!-- turno dia -->
+                <mat-form-field appearance="legacy">
+                    <mat-label>Seleccione</mat-label>
+                    <mat-select formControlName="tm_domingo_he">
+                        <mat-option *ngFor="let item of horariosEntradaManana" [value]="item">{{item}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="legacy">
+                    <mat-label>Seleccione</mat-label>
+                    <mat-select formControlName="tm_domingo_hs">
+                        <mat-option *ngFor="let item of horariosSalidaManana" [value]="item">{{item}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <!-- turno tarde -->
+                <mat-form-field appearance="legacy">
+                    <mat-label>Seleccione</mat-label>
+                    <mat-select formControlName="tt_domingo_he">
+                        <mat-option *ngFor="let item of horariosEntradaTarde" [value]="item">{{item}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="legacy">
+                    <mat-label>Seleccione</mat-label>
+                    <mat-select formControlName="tt_domingo_hs">
+                        <mat-option *ngFor="let item of horariosSalidaTarde" [value]="item">{{item}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <!-- turno noche -->
+                <mat-form-field appearance="legacy">
+                    <mat-label>Seleccione</mat-label>
+                    <mat-select formControlName="tn_domingo_he">
+                        <mat-option *ngFor="let item of horariosEntradaNoche" [value]="item">{{item}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="legacy">
+                    <mat-label>Seleccione</mat-label>
+                    <mat-select formControlName="tn_domingo_hs">
+                        <mat-option *ngFor="let item of horariosSalidaNoche" [value]="item">{{item}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <!-- fin item 1 -->
+                
+            </div>
+        </div>
+        
+
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <div class="w-100">
+            <button routerLink="/personal-medico/listar" mat-raised-button color="warn" class="mr-2">
+                <mat-icon>close</mat-icon> Cancelar
+            </button>
+            <button (click)="registrar()" cdkFocusInitial [disabled]="!form.valid" mat-raised-button color="accent">
+                <mat-icon>save</mat-icon> Guardar
+            </button>
+        </div>
+    </mat-dialog-actions>
+</mat-card>
+</form>

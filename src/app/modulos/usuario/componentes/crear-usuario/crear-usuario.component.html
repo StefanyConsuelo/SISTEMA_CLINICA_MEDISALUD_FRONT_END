@@ -1,0 +1,61 @@
+<div class="_load_main inset-0" *ngIf="cargando">
+    <div class="_load_content">
+        <mat-spinner diameter=70 color=primary></mat-spinner>
+        <h3 class="_load_text">{{ mensajeCarga }}</h3>
+    </div>
+</div>
+<mat-card>
+    <mat-card-title class="text-2xl font-bold text-primary">{{ usuarioId ? 'Editar usuario' : 'Crear usuario'}}</mat-card-title>
+    <mat-card-subtitle class="text-lg text-gray-400 font-bold">Formulario</mat-card-subtitle>
+    <mat-dialog-content class="mat-typography">
+
+        <!-- aqui va el formulario -->
+        <form [formGroup]="form" novalidate>
+
+            <div class="grid grid-rows-4 grid-cols-1 gap-4">
+
+                <mat-form-field appearance="legacy">
+                    <mat-label>Personal Médico <span class="text-red-600">(*)</span></mat-label>
+                    <mat-select formControlName="persona" [disabled]="usuarioId != null">
+                      <mat-option value="">Seleccione</mat-option>
+                      <mat-option *ngFor="let p of personal_medicos" [value]="p.personaId">{{getNombreCompleto(p)}}</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="form.controls.persona.hasError('required')">Seleccione una opción</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="legacy">
+                    <mat-label>Perfil <span class="text-red-600">(*)</span></mat-label>
+                    <mat-select formControlName="perfil">
+                      <mat-option value="">Seleccione</mat-option>
+                      <mat-option *ngFor="let p of perfiles" [value]="p.perfilId">{{p.nombre}}</mat-option>                      
+                    </mat-select>
+                    <mat-error *ngIf="form.controls.perfil.hasError('required')">Seleccione una opción</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="legacy">
+                    <mat-label>Usuario <span class="text-red-600">(*)</span></mat-label>
+                    <input matInput type="text" formControlName="usuario"  [maxLength]="20" [readonly]="usuarioId != null">
+                    <mat-error *ngIf="form.controls.usuario.hasError('required')">El campo es requerido</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="legacy" *ngIf="!usuarioId">
+                    <mat-label>Contraseña <span class="text-red-600">(*)</span></mat-label>
+                    <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" [maxLength]="20">
+                    <mat-error *ngIf="form.controls.password.hasError('required')">El campo es requerido</mat-error>
+                    <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                </mat-form-field>
+            </div>
+        </form>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <div class="w-100">
+            <button routerLink="/usuario/listar" mat-raised-button color="warn" class="mr-2">
+                <mat-icon>close</mat-icon> Cancelar</button>
+            <button (click)="registrar()" cdkFocusInitial [disabled]="!form.valid"  
+                mat-raised-button color="accent">
+                <mat-icon>save</mat-icon> Guardar</button>
+        </div>
+    </mat-dialog-actions>
+</mat-card>

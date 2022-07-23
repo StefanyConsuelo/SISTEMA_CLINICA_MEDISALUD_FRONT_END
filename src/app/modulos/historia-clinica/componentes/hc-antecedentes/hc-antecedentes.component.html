@@ -1,0 +1,107 @@
+<div class="_load_main inset-0" *ngIf="cargando">
+    <div class="_load_content">
+        <mat-spinner diameter=70 color=primary></mat-spinner>
+        <h3 class="_load_text">{{mensajeCarga}}</h3>
+    </div>
+</div>
+<form [formGroup]="form" novalidate>
+    <section>
+        <h3>Fisiológicos</h3>
+        <div class="grid grid-cols-2 grid-rows-2 gap-4">
+            <mat-form-field appearance="legacy">
+                <mat-label>Prenatales </mat-label>
+                <input matInput type="text" formControlName="prenatales">
+            </mat-form-field>
+            <mat-form-field appearance="legacy">
+                <mat-label>Parto </mat-label>
+                <input matInput type="text" formControlName="parto">
+            </mat-form-field>
+            <mat-form-field appearance="legacy">
+                <mat-label>Grado Instrucción </mat-label>
+                <input matInput type="text" formControlName="grado_instruccion">
+            </mat-form-field>
+            <mat-form-field appearance="legacy">
+                <mat-label>Comunicaciones </mat-label>
+                <input matInput type="text" formControlName="comunicaciones">
+            </mat-form-field>
+        </div>
+    </section>
+
+    <section>
+        <h3>Generales</h3>
+        <div class="grid grid-cols-2 grid-rows-3 gap-4">
+            <mat-form-field appearance="legacy">
+                <mat-label>Alimentación </mat-label>
+                <input matInput type="text" formControlName="alimentacion">
+            </mat-form-field>
+            <mat-form-field appearance="legacy">
+                <mat-label>Ejercicios </mat-label>
+                <input matInput type="text" formControlName="ejercicios">
+            </mat-form-field>
+            <mat-form-field appearance="legacy">
+                <mat-label>Habitos nocivos </mat-label>
+                <input matInput type="text" formControlName="habitos_nocivos">
+            </mat-form-field>
+            <mat-checkbox class="mr-2" formControlName="alergias">Es alergico </mat-checkbox>
+            <mat-form-field class="col-span-2" appearance="legacy">
+                <mat-label>Descripción de alergia </mat-label>
+                <input matInput type="text" formControlName="descripcion_alergia">
+            </mat-form-field>
+        </div>
+    </section>
+
+    <section>
+        <h3>Patológicos</h3>
+        <div class="grid grid-cols-2 gap-4">
+            <section>
+                <mat-checkbox class="mr-2" formControlName="hipertencion_arterial" >Hipertención Arterial </mat-checkbox>
+                <mat-checkbox class="mr-2" formControlName="hepatitis_viral">Hepatitis Viral </mat-checkbox>
+                <mat-checkbox class="mr-2" formControlName="enfermedades_cardiacas">Enfermedades cardiacas </mat-checkbox>
+                <mat-checkbox class="mr-2" formControlName="fiebre_malta">Fiebre Malta </mat-checkbox>
+            </section>
+            <section>
+                <mat-checkbox class="mr-2" formControlName="asma">Asma </mat-checkbox>
+                <mat-checkbox class="mr-2" formControlName="enfermedad_tiroidea">Enfermedad Tiroidea </mat-checkbox>
+                <mat-checkbox class="mr-2" formControlName="gastritis_ulcera">Gastritis Ulcera  </mat-checkbox>
+            </section>
+        </div>
+        <div class="grid grid-cols-2 grid-rows-2 gap-4">
+            <mat-form-field appearance="legacy">
+                <mat-label>Cirugias </mat-label>
+                <input matInput type="text" formControlName="cirugias">
+            </mat-form-field>
+            <mat-form-field appearance="legacy">
+                <mat-label>Medicina </mat-label>
+                <input matInput type="text" formControlName="medicina">
+            </mat-form-field>
+            <mat-form-field class="col-span-2" appearance="legacy">
+                <mat-label>Otras Enfermedades </mat-label>
+                <input matInput type="text" formControlName="otras_enfermedades">
+            </mat-form-field>
+        </div>
+    </section>
+
+    <section>
+        <h3>Familiares</h3>
+        <div class="grid grid-cols-1">
+            <section>
+                <mat-checkbox class="mr-2" formControlName="enfermedades_mentales" >Enfermedades Mentales </mat-checkbox>
+                <mat-checkbox class="mr-2" formControlName="tuberculosis">Tuberculosis </mat-checkbox>
+                <mat-checkbox class="mr-2" formControlName="diabetes_mellitus">Diabetes Mellitus </mat-checkbox>
+                <mat-checkbox class="mr-2" formControlName="enfermedades_cardiacas_f">Enfermedades Cardiacas </mat-checkbox>
+                <mat-checkbox class="mr-2" formControlName="hipertencion_arterial_f">Hipertención Arterial </mat-checkbox>
+            </section>
+        </div>
+        <div class="grid grid-cols-1">
+            <mat-form-field appearance="legacy">
+                <mat-label>Otras Enfermedades </mat-label>
+                <input matInput type="text" formControlName="otras_enfermedades_f">
+            </mat-form-field>
+        </div>
+    </section>
+
+    <div class="w-100 pt-6">
+        <button (click)="registrar()" cdkFocusInitial mat-raised-button color="accent"><mat-icon>save</mat-icon> Guardar</button>
+    </div>
+
+</form>

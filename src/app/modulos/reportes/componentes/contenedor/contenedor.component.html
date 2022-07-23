@@ -1,0 +1,24 @@
+<div id="graficos">
+    <div class="mb-6 grid grid-cols-4 p-4 gap-4">
+        <app-reporte-cant-pacientes></app-reporte-cant-pacientes>
+        <app-reporte-cant-citas-medicas></app-reporte-cant-citas-medicas>
+        <app-reporte-cant-hospitalizaciones></app-reporte-cant-hospitalizaciones>
+        <app-reporte-cant-personal-medico></app-reporte-cant-personal-medico>
+    </div>
+    <div class="shadow-lg ml-4 mr-4 p-2">
+        <app-reporte-pacientes-registrados [anios]="anios"></app-reporte-pacientes-registrados>
+    </div>
+    <div class="shadow-lg m-4">
+        <div class="grid grid-cols-2 justify-items-center">
+            <app-reporte-pacientes-recomendados-canal [anios]="anios"></app-reporte-pacientes-recomendados-canal>
+            <app-reporte-servicios-solicitados [anios]="anios"></app-reporte-servicios-solicitados>
+        </div>
+    </div>
+    <div class="shadow-lg m-4 p-2">
+        <app-reporte-citas-generadas [anios]="anios"></app-reporte-citas-generadas>
+    </div>
+    <div class="shadow-lg m-4 p-2">
+        <app-reporte-pacientes-hospitalizados [anios]="anios"></app-reporte-pacientes-hospitalizados>
+    </div>
+</div>
+

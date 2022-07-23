@@ -1,0 +1,62 @@
+<form [formGroup]="form" novalidate>
+
+    <div class="grid grid-rows-3 grid-cols-2 gap-4 p-6">
+
+        <mat-form-field appearance="legacy">
+            <mat-label>Medicamento <span class="text-red-600">(*)</span></mat-label>
+            <mat-select formControlName="medicamento">
+              <mat-option value="">Seleccione</mat-option>
+              <mat-option *ngFor="let m of medicamentos" [value]="m">{{m.nombre}}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="form.controls.medicamento.hasError('required')">Seleccione una opción</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="legacy">
+            <mat-label>Via <span class="text-red-600">(*)</span></mat-label>
+            <mat-select formControlName="via">
+              <mat-option value="">Seleccione</mat-option>
+              <mat-option value="ORAL">ORAL</mat-option>
+            </mat-select>
+            <mat-error *ngIf="form.controls.via.hasError('required')">Seleccione una opción</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="legacy">
+            <mat-label>Duración(días) <span class="text-red-600">(*)</span></mat-label>
+            <input matInput type="text" formControlName="duracion">
+            <mat-error *ngIf="form.controls.duracion.hasError('required')">complete el campo requerido</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="legacy">
+            <mat-label>Rango de horas <span class="text-red-600">(*)</span></mat-label>
+            <mat-select formControlName="frecuencia">
+                <mat-option value="">Seleccione</mat-option>
+                <mat-option value="4">4</mat-option>
+                <mat-option value="5">5</mat-option>
+                <mat-option value="6">6</mat-option>
+                <mat-option value="8">8</mat-option>
+                <mat-option value="10">10</mat-option>
+                <mat-option value="12">12</mat-option>
+            </mat-select>
+            <mat-error *ngIf="form.controls.frecuencia.hasError('required')">Seleccione una opción</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="legacy">
+            <mat-label>Dosis <span class="text-red-600">(*)</span></mat-label>
+            <input matInput type="text" formControlName="dosis">
+            <mat-error *ngIf="form.controls.dosis.hasError('required')">complete el campo requerido</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="legacy">
+            <mat-label>Indicaciones <span class="text-red-600">(*)</span></mat-label>
+            <input matInput type="text" formControlName="indicaciones">
+            <mat-error *ngIf="form.controls.indicaciones.hasError('required')">complete el campo requerido</mat-error>
+        </mat-form-field>
+
+    </div>
+
+    <div class="w-100 pl-6">
+        <button (click)="agregarFila()" cdkFocusInitial [disabled]="!form.valid"  
+            mat-raised-button color="accent"><mat-icon>assignment_returned</mat-icon>Agregar</button>
+    </div>
+
+</form>

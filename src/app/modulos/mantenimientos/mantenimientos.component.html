@@ -1,0 +1,31 @@
+<div class="h-1/5 bg-white mb-2 grid grid-cols-1 gap-4">
+    <div>
+        <h1 class="text-2xl text-primary font-bold">Mantenimientos</h1>
+        <p class="text-lg text-gray-400 font-bold">Mantenimientos del sistema</p>
+    </div>
+</div>
+<div class="grid grid-cols-1 gap-2">
+  <mat-tab-group>
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon class="material-symbols-outlined mr-2">medical_services</mat-icon>Medicamentos
+        </ng-template>
+        <app-listar-medicamentos></app-listar-medicamentos>
+      </mat-tab>
+    
+      <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon class="material-symbols-outlined mr-2">medication_liquid</mat-icon>Area médica
+          </ng-template>
+        <app-listar-area-medicas></app-listar-area-medicas>
+      </mat-tab>
+
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon class="material-symbols-outlined mr-2">local_hospital</mat-icon>Especialidad
+        </ng-template>
+        <app-listar-servicios-especialidad></app-listar-servicios-especialidad>
+      </mat-tab>
+      
+  </mat-tab-group>
+</div>

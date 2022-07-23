@@ -1,0 +1,100 @@
+<!--<div class="_load_main inset-0" *ngIf="cargando">
+    <div class="_load_content">
+        <mat-spinner diameter=70 color=primary></mat-spinner>
+        <h3 class="_load_text">{{mensajeCarga}}</h3>
+    </div>
+</div>-->
+<mat-card>
+    <h1 class="text-2xl text-primary font-bold">Registrar hospitalización</h1>
+    <p class="text-lg text-gray-400 font-bold">Formulario</p>
+    <mat-dialog-content class="mat-typography">
+
+        <!-- aqui va el formulario -->
+        <form [formGroup]="form" novalidate>
+
+            <div class="grid grid-rows-11 grid-cols-3 gap-4">
+
+                <mat-form-field appearance="legacy">
+                    <mat-label>Tipo de documento</mat-label>
+                    <mat-select formControlName="tipoDocumento">
+                      <mat-option value="">Seleccione</mat-option>
+                      <mat-option value="DNI">DNI</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field appearance="legacy">
+                    <mat-label>Número de documento</mat-label>
+                    <input matInput type="text" formControlName="numeroDocumento">
+                    <button type="button" (click)="buscarPaciente()" style="font-size: 25px;" mat-icon-button matSuffix>
+                        <mat-icon>search</mat-icon>
+                    </button>
+                </mat-form-field>
+                
+                <mat-form-field appearance="legacy">
+                    <mat-label>Paciente <span class="text-red-600">(*)</span></mat-label>
+                    <input style="color: red; font-weight: bold;" matInput type="text" 
+                      formControlName="paciente" #nombrePacienteLabel [readonly]="true">
+                      <mat-error *ngIf="form.controls.paciente.hasError('required')">El campo es requerido, consulte por número de documento</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="legacy">
+                    <mat-label>Pre diagnostico <span class="text-red-600">(*)</span></mat-label>
+                    <input matInput type="text" formControlName="preDiagnostico">
+                    <mat-error *ngIf="form.controls.preDiagnostico.hasError('required')">El campo es requerido</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="legacy">
+                    <mat-label>Observación</mat-label>
+                    <input matInput type="text" formControlName="observacion">
+                    <mat-error *ngIf="form.controls.observacion.hasError('required')">El campo es requerido</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="legacy">
+                    <mat-label>Personal médico <span class="text-red-600">(*)</span></mat-label>
+                    <mat-select formControlName="personalMedico">
+                        <mat-option value="">Seleccione</mat-option>
+                        <mat-option *ngFor="let pm of personalMedicos" [value]="pm.personalMedicoId">{{getNombrePersonalMedico(pm)}}</mat-option>                        
+                    </mat-select>
+                    <mat-error *ngIf="form.controls.personalMedico.hasError('required')">Seleccione una opción</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="legacy">
+                    <mat-label>Estado <span class="text-red-600">(*)</span></mat-label>
+                    <mat-select formControlName="estado">
+                        <mat-option value="">Seleccione</mat-option>
+                        <mat-option value="Activo">Activo</mat-option>
+                        <mat-option value="Finalizar">Finalizar</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="form.controls.estado.hasError('required')">Seleccione una opción</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="legacy">
+                    <mat-label>Procedencia <span class="text-red-600">(*)</span></mat-label>
+                    <mat-select formControlName="procedencia">
+                        <mat-option value="">Seleccione</mat-option>
+                        <mat-option value="Consulta médica">Consulta médica</mat-option>
+                        <mat-option value="Emergencia">Emergencia</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="form.controls.estado.hasError('required')">Seleccione una opción</mat-error>
+                </mat-form-field>
+
+                <mat-radio-group aria-label="Alta"
+                    [ngModelOptions]="{standalone: true}" 
+                    [(ngModel)]="alta">
+                    <mat-label style="margin-right: 10px;">Dado de alta</mat-label>
+                    <mat-radio-button style="margin-right: 10px;" value="SI">Si</mat-radio-button>
+                    <mat-radio-button style="margin-right: 10px;" value="NO">No</mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </form>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <div class="w-100">
+            <button routerLink="/hospitalizacion/listar" mat-raised-button color="warn" class="mr-2">
+                <mat-icon>close</mat-icon> Cancelar</button>
+            <button (click)="registrar()" cdkFocusInitial [disabled]="!form.valid"  
+                mat-raised-button color="accent">
+                <mat-icon>save</mat-icon> Guardar</button>
+        </div>
+    </mat-dialog-actions>
+</mat-card>
